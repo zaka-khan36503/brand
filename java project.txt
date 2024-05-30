@@ -1,0 +1,198 @@
+import java.util.Scanner;
+
+public class User {
+    private String name;
+    private int phoneNo;
+
+    User() {
+        name = "";
+        phoneNo = 0;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPhoneNo(int phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public int getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void input() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Name: ");
+        name = scanner.nextLine();
+        System.out.println("Enter Phone Number: ");
+        phoneNo = scanner.nextInt();
+    }
+
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Phone Number: " + phoneNo);
+    }
+}
+
+class Cashier extends User {
+    private int id;
+    private int password;
+
+    Cashier() {
+        id = 12;
+        password = 4321;
+    }
+
+    public void login() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter User name: ");
+        int enteredId = scanner.nextInt();
+        System.out.println("Enter Password");
+        int enteredPassword = scanner.nextInt();
+        if (id == enteredId && password == enteredPassword)
+            System.out.println("Successfully logged in");
+        else {
+            System.out.println("Wrong ID or Password");
+            System.out.println("Account blocked");
+        }
+    }
+
+    public void search() {
+        // Implement search logic
+    }
+}
+
+class Admin extends User {
+    private String username;
+    private int password;
+
+    Admin() {
+        username = "admin";
+        password = 1234;
+    }
+
+    public void login() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter User name: ");
+        String enteredUsername = scanner.nextLine();
+        System.out.println("Enter Password");
+        int enteredPassword = scanner.nextInt();
+        if (username.equals(enteredUsername) && password == enteredPassword)
+            System.out.println("Successfully logged in");
+        else {
+            System.out.println("Wrong Username or Password");
+            for (int i = 0; i < 3; i++) {
+                System.out.println("# Tries remaining");
+                if (username.equals(enteredUsername) && password == enteredPassword)
+                    System.out.println("Successfully logged in");
+                else
+                    System.out.println("Wrong Username or Password");
+            }
+        }
+    }
+}
+
+class Clothes extends Admin {
+    private int id;
+    private int price;
+    private String size;
+    private String colour;
+    private String type;
+
+    Clothes() {
+        id = 0;
+        price = 0;
+        size = "";
+        colour = "";
+        type = "";
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void input() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter ID: ");
+        id = scanner.nextInt();
+        System.out.println("Enter Price: ");
+        price = scanner.nextInt();
+        System.out.println("Enter Size of Cloth (Small Medium Large): ");
+        scanner.nextLine(); // Consume newline
+        size = scanner.nextLine();
+        System.out.println("Enter Colour: ");
+        colour = scanner.nextLine();
+        System.out.println("Enter Type: ");
+        type = scanner.nextLine();
+    }
+
+    public void display() {
+        System.out.println("ID: " + id);
+        System.out.println("Price: " + price);
+        System.out.println("Size of Cloth: " + size);
+        System.out.println("Colour: " + colour);
+        System.out.println("Type: " + type);
+    }
+}
+
+class SummerCollection extends Clothes {
+    private int choice;
+    Clothes c = new Clothes();
+
+    public void manageInventory() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("To Add Items Press 1: ");
+        System.out.println("To Remove or Discontinue Items Press 2: ");
+        System.out.println("To Update Items Press 3: ");
+        System.out.println("Enter Choice: ");
+        choice = scanner.nextInt();
+        if (choice == 1) {
+            c.input();
+        } else if (choice == 2) {
+            // Implement removal logic
+        } else if (choice == 3) {
+            // Implement update logic
+        }
+    }
+}
